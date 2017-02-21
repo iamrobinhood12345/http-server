@@ -6,16 +6,31 @@ import client
 import server
 
 
-def test_message_longer_than_buffer():
-    """Test if string that is longer than buffer length gets sent."""
-    assert client.client("I don't know why you say 'goodbye' I say 'hello'") == "I don't know why you say 'goodbye' I say 'hello'"
+def test_response_ok():
+    """Test to see if valid client request will return a 200 OK message."""
+    from client import client
+    response = ("HTTP/1.1 200 OK\r\n" +
+        "Server: Teddy Bear\r\n" +
+        "Content-Type: text/html\r\n" +
+        "Connection: Closed\r\n\r\n" +
+        "<html>\r\n" +
+        "<body>\r\n" +
+        "<h1>Hello, World!</h1>\r\n" +
+        "</body>\r\n" +
+        "</html>")
+    assert client("hello") == response
 
 
-def test_message_same_length_as_buffer():
-    """Test if string that is same length buffer length gets sent."""
-    assert client.client("hlo gdby") == "hlo gdby"
-
-
-def test_message_shorter_than_buffer():
-    """Test if string that is shorter than buffer length gets sent."""
-    assert client.client("¡¢£¤¥") == "¡¢£¤¥"
+def test_response_failed():
+    """Test to see if invalid client request will return a 500 Error message."""
+    from client import client
+    response = ("HTTP/1.1 500 Internal Server Error\r\n" +
+        "Server: Teddy Bear\r\n" +
+        "Content-Type: text/html\r\n" +
+        "Connection: Closed\r\n\r\n" +
+        "<html>\r\n" +
+        "<body>\r\n" +
+        "<h1>Internal Server Error</h1>\r\n" +
+        "</body>\r\n" +
+        "</html>")
+    assert client("bad request") == response
