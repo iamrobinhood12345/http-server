@@ -10,7 +10,7 @@ def server():
     """Recieve a message from the client and echos it back."""
     while True:
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
-        address = ("127.0.0.1", 6017)
+        address = ("127.0.0.1", 6020)
         server_socket.bind(address)
         server_socket.listen(1)
         conn, addr = server_socket.accept()
