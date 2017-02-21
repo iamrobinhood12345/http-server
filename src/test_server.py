@@ -99,9 +99,10 @@ REQUESTS_RESPONSES = [
     ],
     [
         "host",
-        ("GET /teddy/bear.html HTTP/1.1\r\n" +
+        ("GET /teddy/bear.html HTTP/1.0\r\n" +
         "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n" +
-        "Server: Teddy Bear\r\n"),
+        "Server: Teddy Bear\r\n" +
+        "Host:  \r\n"),
         ("HTTP/1.1 417 Expectation Failed\r\n" +
         "Date: Mon, 23 May 2005 22:38:34 GMT\r\n" +
         "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n" +
@@ -175,7 +176,7 @@ def test_format_validation(status, req):
     assert valid
 
 
-@pytest.mark.parametrize("request, response", REQUESTS_RESPONSES)
+@pytest.mark.parametrize("status, request, response", REQUESTS_RESPONSES)
 def test_client_requests_responses(request, response):
     """Test client requests to server return correct responses."""
     from client import client
