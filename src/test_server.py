@@ -32,3 +32,15 @@ def test_response_failed():
         "</body>\r\n"
         "</html>")
     assert client("Get the bl®rg woot") == response
+
+
+def test_method_validation_ok():
+    """Test correct method."""
+    from server import method_validation
+    assert method_validation("GET ") is True
+
+
+def test_method_validation_error():
+    """Test incorrect method."""
+    from server import method_validation
+    assert method_validation("get ") is False
