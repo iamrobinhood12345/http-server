@@ -7,18 +7,20 @@ import sys
 
 def client(message):
     """Create the protocol for interacting with server."""
-    info = socket.getaddrinfo('127.0.0.1', 5005)
+    info = socket.getaddrinfo('127.0.0.1', 5017)
     stream_info = [i for i in info if i[1] == socket.SOCK_STREAM][0]
     client_socket = socket.socket(*stream_info[:3])
     client_socket.connect(stream_info[-1])
     buffer_length = 8
     reply_complete = False
-    response = ""
+    response = u""
+    if sys.version_info[0] == 2:
+        message = message.decode('utf8')
     client_socket.sendall(message.encode('utf8'))
     while not reply_complete:
-        data = client_socket.recv(buffer_length).decode('utf8')
-        response += data
-        if len(response) < buffer_length:
+        data = client_socket.recv(buffer_length)
+        response += data.decode('utf8')
+        if len(data) < buffer_length:
             break
     client_socket.close()
     print(response)
