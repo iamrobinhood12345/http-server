@@ -52,20 +52,18 @@ def method_validation(request):
 
 def version_validation(request):
     """Verify version formatting and type."""
-    version = request.split(' ')[2][:8]
-    return version == u"HTTP/1.1"
+    return request.split(' ')[2][:8] == u"HTTP/1.1"
 
 
 def host_validation(request):
     """Verify host formatting and type."""
-    host = request.split('\r\n')[3]
-    return host == u"Host:  "
+    return request.split('\r\n')[3] == u"Host:  "
 
 
 def format_validation(request):
     """Verify format formatting and type."""
     val_count = 0
-    for ind in range(0, len(request)):
+    for ind in range(len(request)):
         if val_count == 0 or val_count == 1:
             if request[ind] == u" ":
                 val_count += 1
@@ -150,5 +148,4 @@ def response_error(key):
 
 
 if __name__ == '__main__':
-    """Run server from command line."""
     server()
