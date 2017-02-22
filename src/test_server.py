@@ -7,131 +7,154 @@ import pytest
 REQUESTS = [
     [
         "OK",
-        ("GET /teddy/bear.html HTTP/1.1\r\n" +
-        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n" +
-        "Server: Teddy Bear\r\n" +
+        ("GET /teddy/bear.html HTTP/1.1\r\n"
+        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
+        "Server: Teddy Bear\r\n"
         "Host:  \r\n")
     ],
     [
         "method",
-        ("PUT /teddy/bear.html HTTP/1.1\r\n" +
-        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n" +
-        "Server: Teddy Bear\r\n" +
+        ("PUT /teddy/bear.html HTTP/1.1\r\n"
+        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
+        "Server: Teddy Bear\r\n"
         "Host:  \r\n")
     ],
     [
         "version",
-        ("GET /teddy/bear.html HTTP/1.0\r\n" +
-        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n" +
-        "Server: Teddy Bear\r\n" +
+        ("GET /teddy/bear.html HTTP/1.0\r\n"
+        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
+        "Server: Teddy Bear\r\n"
         "Host:  \r\n")
     ],
     [
         "host",
-        ("GET /teddy/bear.html HTTP/1.1\r\n" +
-        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n" +
+        ("GET /teddy/bear.html HTTP/1.1\r\n"
+        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
         "Server: Teddy Bear\r\n")
     ],
     [
         "format",
-        ("GET /teddy/bear.html HTTP/1.1\r\n" +
-        "Date : Mon, 27 Jul 1884 12:28:53 GMT\r\n" +
-        "Server: Teddy Bear\r\n" +
+        ("GET /teddy/bear.html HTTP/1.1\r\n"
+        "Date : Mon, 27 Jul 1884 12:28:53 GMT\r\n"
+        "Server: Teddy Bear\r\n"
         "Host:  \r\n")
     ],
 ]
 
 
+# REQUESTS_RESPONSES = [
+#     [
+#         "OK",
+#         ("GET /teddy/bear.html HTTP/1.1\r\n"
+#         "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
+#         "Server: Teddy Bear\r\n"
+#         "Host:  \r\n"),
+#         ("HTTP/1.1 200 OK\r\n"
+#         "Date: Mon, 23 May 2005 22:38:34 GMT\r\n"
+#         "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n"
+#         "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n"
+#         "Etag: '3f80f-1b6-3e1cb03b'\r\n"
+#         "Accept-Ranges:  none\r\n"
+#         "Content-Length: 438\r\n"
+#         "Connection: close\r\n"
+#         "Content-Type: text/html; charset=UTF-8\r\n"
+#         "\r\n"
+#         "<num bytes of content>")
+#     ],
+#     [
+#         "method",
+#         ("PUT /teddy/bear.html HTTP/1.1\r\n"
+#         "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
+#         "Server: Teddy Bear\r\n"
+#         "Host:  \r\n"),
+#         ("HTTP/1.1 405 Method Not Allowed\r\n"
+#         "Date: Mon, 23 May 2005 22:38:34 GMT\r\n"
+#         "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n"
+#         "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n"
+#         "Etag: '3f80f-1b6-3e1cb03b'\r\n"
+#         "Accept-Ranges:  none\r\n"
+#         "Content-Length: 438\r\n"
+#         "Connection: close\r\n"
+#         "Content-Type: text/html; charset=UTF-8\r\n"
+#         "\r\n"
+#         "<num bytes of content>")
+#     ],
+#     [
+#         "version",
+#         ("GET /teddy/bear.html HTTP/1.0\r\n"
+#         "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
+#         "Server: Teddy Bear\r\n"
+#         "Host:  \r\n"),
+#         ("HTTP/1.1 403 Forbidden\r\n"
+#         "Date: Mon, 23 May 2005 22:38:34 GMT\r\n"
+#         "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n"
+#         "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n"
+#         "Etag: '3f80f-1b6-3e1cb03b'\r\n"
+#         "Accept-Ranges:  none\r\n"
+#         "Content-Length: 438\r\n"
+#         "Connection: close\r\n"
+#         "Content-Type: text/html; charset=UTF-8\r\n"
+#         "\r\n"
+#         "<num bytes of content>")
+#     ],
+#     [
+#         "host",
+#         ("GET /teddy/bear.html HTTP/1.1\r\n"
+#         "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
+#         "Server: Teddy Bear\r\n"),
+#         ("HTTP/1.1 417 Expectation Failed\r\n"
+#         "Date: Mon, 23 May 2005 22:38:34 GMT\r\n"
+#         "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n"
+#         "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n"
+#         "Etag: '3f80f-1b6-3e1cb03b'\r\n"
+#         "Accept-Ranges:  none\r\n"
+#         "Content-Length: 438\r\n"
+#         "Connection: close\r\n"
+#         "Content-Type: text/html; charset=UTF-8\r\n"
+#         "\r\n"
+#         "<num bytes of content>")
+#     ],
+#     [
+#         "format",
+#         ("GET /teddy/bear.html HTTP/1.1\r\n"
+#         "Date : Mon, 27 Jul 1884 12:28:53 GMT\r\n"
+#         "Server: Teddy Bear\r\n"
+#         "Host:  \r\n"),
+#         ("HTTP/1.1 400 Bad Request\r\n"
+#         "Date: Mon, 23 May 2005 22:38:34 GMT\r\n"
+#         "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n"
+#         "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n"
+#         "Etag: '3f80f-1b6-3e1cb03b'\r\n"
+#         "Accept-Ranges:  none\r\n"
+#         "Content-Length: 438\r\n"
+#         "Connection: close\r\n"
+#         "Content-Type: text/html; charset=UTF-8\r\n"
+#         "\r\n"
+#         "<num bytes of content>")
+#     ],
+# ]
+
+
 REQUESTS_RESPONSES = [
     [
-        "OK",
-        ("GET /teddy/bear.html HTTP/1.1\r\n" +
-        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n" +
-        "Server: Teddy Bear\r\n" +
-        "Host:  \r\n"),
-        ("HTTP/1.1 200 OK\r\n" +
-        "Date: Mon, 23 May 2005 22:38:34 GMT\r\n" +
-        "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n" +
-        "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n" +
-        "Etag: '3f80f-1b6-3e1cb03b'\r\n" +
-        "Accept-Ranges:  none\r\n" +
-        "Content-Length: 438\r\n" +
-        "Connection: close\r\n" +
-        "Content-Type: text/html; charset=UTF-8\r\n" +
-        "\r\n" +
-        "<438 bytes of content>")
+        "GET /teddy/bear.html HTTP/1.1\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
+        "HTTP/1.1 200 OK\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 438\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n<num bytes of content>"
     ],
     [
-        "method",
-        ("PUT /teddy/bear.html HTTP/1.1\r\n" +
-        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n" +
-        "Server: Teddy Bear\r\n" +
-        "Host:  \r\n"),
-        ("HTTP/1.1 405 Method Not Allowed\r\n" +
-        "Date: Mon, 23 May 2005 22:38:34 GMT\r\n" +
-        "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n" +
-        "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n" +
-        "Etag: '3f80f-1b6-3e1cb03b'\r\n" +
-        "Accept-Ranges:  none\r\n" +
-        "Content-Length: 438\r\n" +
-        "Connection: close\r\n" +
-        "Content-Type: text/html; charset=UTF-8\r\n" +
-        "\r\n" +
-        "<438 bytes of content>")
+        "PUT /teddy/bear.html HTTP/1.1\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
+        "HTTP/1.1 405 Method Not Allowed\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 438\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n<num bytes of content>"
     ],
     [
-        "version",
-        ("GET /teddy/bear.html HTTP/1.0\r\n" +
-        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n" +
-        "Server: Teddy Bear\r\n" +
-        "Host:  \r\n"),
-        ("HTTP/1.1 403 Forbidden\r\n" +
-        "Date: Mon, 23 May 2005 22:38:34 GMT\r\n" +
-        "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n" +
-        "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n" +
-        "Etag: '3f80f-1b6-3e1cb03b'\r\n" +
-        "Accept-Ranges:  none\r\n" +
-        "Content-Length: 438\r\n" +
-        "Connection: close\r\n" +
-        "Content-Type: text/html; charset=UTF-8\r\n" +
-        "\r\n" +
-        "<438 bytes of content>")
+        "GET /teddy/bear.html HTTP/1.0\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
+        "HTTP/1.1 403 Forbidden\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 438\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n<num bytes of content>"
     ],
     [
-        "host",
-        ("GET /teddy/bear.html HTTP/1.0\r\n" +
-        "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n" +
-        "Server: Teddy Bear\r\n" +
-        "Host:  \r\n"),
-        ("HTTP/1.1 417 Expectation Failed\r\n" +
-        "Date: Mon, 23 May 2005 22:38:34 GMT\r\n" +
-        "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n" +
-        "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n" +
-        "Etag: '3f80f-1b6-3e1cb03b'\r\n" +
-        "Accept-Ranges:  none\r\n" +
-        "Content-Length: 438\r\n" +
-        "Connection: close\r\n" +
-        "Content-Type: text/html; charset=UTF-8\r\n" +
-        "\r\n" +
-        "<438 bytes of content>")
+        "GET /teddy/bear.html HTTP/1.1\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\n",
+        "HTTP/1.1 417 Expectation Failed\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 438\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n<num bytes of content>"
     ],
     [
-        "format",
-        ("GET /teddy/bear.html HTTP/1.1\r\n" +
-        "Date : Mon, 27 Jul 1884 12:28:53 GMT\r\n" +
-        "Server: Teddy Bear\r\n" +
-        "Host:  \r\n"),
-        ("HTTP/1.1 400 Bad Request\r\n" +
-        "Date: Mon, 23 May 2005 22:38:34 GMT\r\n" +
-        "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n" +
-        "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n" +
-        "Etag: '3f80f-1b6-3e1cb03b'\r\n" +
-        "Accept-Ranges:  none\r\n" +
-        "Content-Length: 438\r\n" +
-        "Connection: close\r\n" +
-        "Content-Type: text/html; charset=UTF-8\r\n" +
-        "\r\n" +
-        "<438 bytes of content>")
+        "GET /teddy/bear.html HTTP/1.1\r\nDate : Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
+        "HTTP/1.1 400 Bad Request\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 438\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n<num bytes of content>"
     ],
 ]
 
@@ -176,8 +199,38 @@ def test_format_validation(status, req):
     assert valid
 
 
-@pytest.mark.parametrize("status, request, response", REQUESTS_RESPONSES)
-def test_client_requests_responses(request, response):
+# @pytest.mark.parametrize("request, response", REQUESTS_RESPONSES)
+# def test_client_requests_responses(request, response):
+#     """Test client requests to server return correct responses."""
+#     from client import client
+#     assert client(request) == response
+
+
+def test_client_requests_responses_ok():
     """Test client requests to server return correct responses."""
     from client import client
-    assert client(request) == response
+    assert client(REQUESTS_RESPONSES[0][0]) == REQUESTS_RESPONSES[0][1]
+
+
+def test_client_requests_responses_method():
+    """Test client requests to server return correct responses."""
+    from client import client
+    assert client(REQUESTS_RESPONSES[1][0]) == REQUESTS_RESPONSES[1][1]
+
+
+def test_client_requests_responses_version():
+    """Test client requests to server return correct responses."""
+    from client import client
+    assert client(REQUESTS_RESPONSES[2][0]) == REQUESTS_RESPONSES[2][1]
+
+
+def test_client_requests_responses_host():
+    """Test client requests to server return correct responses."""
+    from client import client
+    assert client(REQUESTS_RESPONSES[3][0]) == REQUESTS_RESPONSES[3][1]
+
+
+def test_client_requests_responses_format():
+    """Test client requests to server return correct responses."""
+    from client import client
+    assert client(REQUESTS_RESPONSES[4][0]) == REQUESTS_RESPONSES[4][1]
