@@ -16,7 +16,7 @@ def test_response_ok():
         "<h1>Hello, World!</h1>\r\n"
         "</body>\r\n"
         "</html>")
-    assert client("GET the bl®rg woot") == response
+    assert client("GET the blerg woot") == response
 
 
 def test_response_failed():
@@ -31,7 +31,7 @@ def test_response_failed():
         "<h1>Internal Server Error</h1>\r\n"
         "</body>\r\n"
         "</html>")
-    assert client("Get the bl®rg woot") == response
+    assert client("Get the blerg woot") == response
 
 
 def test_method_validation_ok():
