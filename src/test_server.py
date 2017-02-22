@@ -69,9 +69,33 @@ REQUESTS_RESPONSES = [
     ],
     [
         "GET webroot/sample.txt HTTP/1.1\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
-        "HTTP/1.1 200 OK\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 114\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\nThis is a very simple text file.\r\nJust to show that we can serve it up.\r\nIt is three lines long."
+        "HTTP/1.1 200 OK\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 94\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\nThis is a very simple text file.\nJust to show that we can serve it up.\nIt is three lines long."
     ],
 ]
+
+
+def test_parse_request_method():
+    """Test parse_request returns correct responses."""
+    from server import parse_request
+    assert parse_request(REQUESTS_RESPONSES[0][0]) == REQUESTS_RESPONSES[0][1]
+
+
+def test_parse_request_version():
+    """Test parse_request returns correct responses."""
+    from server import parse_request
+    assert parse_request(REQUESTS_RESPONSES[1][0]) == REQUESTS_RESPONSES[1][1]
+
+
+def test_parse_request_host():
+    """Test parse_request returns correct responses."""
+    from server import parse_request
+    assert parse_request(REQUESTS_RESPONSES[2][0]) == REQUESTS_RESPONSES[2][1]
+
+
+def test_parse_request_format():
+    """Test parse_request returns correct responses."""
+    from server import parse_request
+    assert parse_request(REQUESTS_RESPONSES[3][0]) == REQUESTS_RESPONSES[3][1]
 
 
 @pytest.mark.parametrize("status, req", REQUESTS)
@@ -154,12 +178,3 @@ def test_client_requests_response_ok_webroot_sample():
     """Test client requests to server return correct responses."""
     from client import client
     assert client(REQUESTS_RESPONSES[6][0]) == REQUESTS_RESPONSES[6][1]
-
-
-"""Parametrized client-server tests that do not work."""
-
-# @pytest.mark.parametrize("request, response", REQUESTS_RESPONSES)
-# def test_client_requests_responses(request, response):
-#     """Test client requests to server return correct responses."""
-#     from client import client
-#     assert client(request) == response
