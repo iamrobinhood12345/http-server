@@ -199,13 +199,6 @@ def test_format_validation(status, req):
     assert valid
 
 
-# @pytest.mark.parametrize("request, response", REQUESTS_RESPONSES)
-# def test_client_requests_responses(request, response):
-#     """Test client requests to server return correct responses."""
-#     from client import client
-#     assert client(request) == response
-
-
 def test_client_requests_responses_ok():
     """Test client requests to server return correct responses."""
     from client import client
@@ -234,3 +227,10 @@ def test_client_requests_responses_format():
     """Test client requests to server return correct responses."""
     from client import client
     assert client(REQUESTS_RESPONSES[4][0]) == REQUESTS_RESPONSES[4][1]
+
+
+# @pytest.mark.parametrize("request, response", REQUESTS_RESPONSES)
+# def test_client_requests_responses(request, response):
+#     """Test client requests to server return correct responses."""
+#     from client import client
+#     assert client(request) == response
