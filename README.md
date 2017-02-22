@@ -44,6 +44,8 @@ Can only run one server test at a time on my system. Connection does not close.
     <html>
     <body>
     <h1>Hello, World!</h1>
+    </body>
+    </html>
     
 ### Invalid methods:
 
@@ -67,7 +69,5 @@ Can only run one server test at a time on my system. Connection does not close.
     <html>
     <body>
     <h1>Internal Server Error</h1>
-    </body>
-    </html>
     </body>
     </html>
