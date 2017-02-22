@@ -9,14 +9,18 @@ def server():
     """Recieve a message from the client and sends a response back."""
     while True:
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
-        address = ("127.0.0.1", 7010)
+        address = ("127.0.0.1", 7023)
         server_socket.bind(address)
         server_socket.listen(1)
         conn, addr = server_socket.accept()
         buffer_length = 8
         req = buffer_request(buffer_length, conn)
         print(req)
-        conn.sendall(parse_request(req).encode('utf-8'))
+        message = parse_request(req)
+        if sys.version_info[0] == 2:
+            conn.sendall(message)
+        else:
+            conn.sendall(message.encode('utf-8'))
         conn.close()
         server_socket.close()
 
@@ -42,7 +46,9 @@ def parse_request(request):
         return response_error("host")
     elif not format_validation(request):
         return response_error("format")
-    return response_error("OK")
+    uri = request.split(" ", 2)[1]
+    info = resolve_uri(uri)
+    return response_error("OK", info[0], info[1])
 
 
 def method_validation(request):
@@ -87,7 +93,30 @@ def format_validation(request):
     return True
 
 
-def response_error(key):
+def resolve_uri(uri):
+    """Uri determines response body content."""
+    import io
+    import os
+    if "." not in uri:
+        content_type = ".dir"
+        fials = os.listdir(uri)
+        center = "</li><li>".join(fials)
+        body = "<html><body><ul><li>" + center + "</li></ul></body></html>"
+    else:
+        ind = uri.index(".")
+        content_type = uri[ind:]
+        if content_type == ".jpg" or content_type == ".png":
+            fial = io.open(uri, "rb")
+            body = str(fial.read())
+            fial.close()
+        else:
+            fial = io.open(uri, "r")
+            body = fial.read()
+            fial.close()
+    return body, content_type
+
+
+def response_error(key, body=None, content_type=None):
     """Return evaluated request resopnse, either OK or a specific response error."""
     response_dict = {
         "OK": ("HTTP/1.1 200 OK\r\n"
@@ -96,11 +125,10 @@ def response_error(key):
                     "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n"
                     "Etag: '3f80f-1b6-3e1cb03b'\r\n"
                     "Accept-Ranges:  none\r\n"
-                    "Content-Length: 438\r\n"
+                    "Content-Length: " + str(len(body)) + "\r\n"
                     "Connection: close\r\n"
                     "Content-Type: text/html; charset=UTF-8\r\n"
-                    "\r\n"
-                    "<num bytes of content>"),
+                    "\r\n" + body),
         "method": ("HTTP/1.1 405 Method Not Allowed\r\n"
                     "Date: Mon, 23 May 2005 22:38:34 GMT\r\n"
                     "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n"
