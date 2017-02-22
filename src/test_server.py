@@ -136,6 +136,8 @@ def test_client_requests_responses_format():
     assert client(REQUESTS_RESPONSES[4][0]) == REQUESTS_RESPONSES[4][1]
 
 
+"""Parametrized client-server tests that do not work."""
+
 # @pytest.mark.parametrize("request, response", REQUESTS_RESPONSES)
 # def test_client_requests_responses(request, response):
 #     """Test client requests to server return correct responses."""
