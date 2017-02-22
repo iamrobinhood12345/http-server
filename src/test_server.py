@@ -66,6 +66,30 @@ REQUESTS_RESPONSES = [
 ]
 
 
+def test_parse_request_method():
+    """Test parse_request returns correct responses."""
+    from server import parse_request
+    assert parse_request(REQUESTS_RESPONSES[0][0]) == REQUESTS_RESPONSES[0][1]
+
+
+def test_parse_request_version():
+    """Test parse_request returns correct responses."""
+    from server import parse_request
+    assert parse_request(REQUESTS_RESPONSES[1][0]) == REQUESTS_RESPONSES[1][1]
+
+
+def test_parse_request_host():
+    """Test parse_request returns correct responses."""
+    from server import parse_request
+    assert parse_request(REQUESTS_RESPONSES[2][0]) == REQUESTS_RESPONSES[2][1]
+
+
+def test_parse_request_format():
+    """Test parse_request returns correct responses."""
+    from server import parse_request
+    assert parse_request(REQUESTS_RESPONSES[3][0]) == REQUESTS_RESPONSES[3][1]
+
+
 @pytest.mark.parametrize("status, req", REQUESTS)
 def test_method_validation(status, req):
     """Test to see if GET requests are valid and any other type of requests are invalid."""

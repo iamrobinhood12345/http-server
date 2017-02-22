@@ -7,18 +7,16 @@ import sys
 
 def server():
     """Recieve a message from the client and sends a response back."""
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
+    server_socket.bind(("127.0.0.1", 7011))
+    server_socket.listen(1)
+    buffer_length = 8
     while True:
-        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
-        address = ("127.0.0.1", 7010)
-        server_socket.bind(address)
-        server_socket.listen(1)
         conn, addr = server_socket.accept()
-        buffer_length = 8
         req = buffer_request(buffer_length, conn)
         print(req)
         conn.sendall(parse_request(req).encode('utf-8'))
         conn.close()
-        server_socket.close()
 
 
 def buffer_request(buffer_length, conn):
