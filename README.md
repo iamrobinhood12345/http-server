@@ -43,7 +43,7 @@ Can only run one server test at a time on my system. Connection does not close.
 
 
 
-## Usage with changing port numbers between uses:
+## "Console Tests" with changing port numbers between uses:
 
 ### "200 OK" request/response cycle (valid request):
 
