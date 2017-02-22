@@ -9,7 +9,7 @@ def server():
     """Recieve a message from the client and sends a response back."""
     while True:
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
-        address = ("127.0.0.1", 7023)
+        address = ("127.0.0.1", 7030)
         server_socket.bind(address)
         server_socket.listen(1)
         conn, addr = server_socket.accept()
@@ -119,16 +119,6 @@ def resolve_uri(uri):
 def response_error(key, body=None, content_type=None):
     """Return evaluated request resopnse, either OK or a specific response error."""
     response_dict = {
-        "OK": ("HTTP/1.1 200 OK\r\n"
-                    "Date: Mon, 23 May 2005 22:38:34 GMT\r\n"
-                    "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n"
-                    "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n"
-                    "Etag: '3f80f-1b6-3e1cb03b'\r\n"
-                    "Accept-Ranges:  none\r\n"
-                    "Content-Length: " + str(len(body)) + "\r\n"
-                    "Connection: close\r\n"
-                    "Content-Type: text/html; charset=UTF-8\r\n"
-                    "\r\n" + body),
         "method": ("HTTP/1.1 405 Method Not Allowed\r\n"
                     "Date: Mon, 23 May 2005 22:38:34 GMT\r\n"
                     "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n"
@@ -174,6 +164,17 @@ def response_error(key, body=None, content_type=None):
                     "\r\n"
                     "<num bytes of content>"),
     }
+    if key == "OK":
+        response_dict[key] = ("HTTP/1.1 200 OK\r\n"
+            "Date: Mon, 23 May 2005 22:38:34 GMT\r\n"
+            "Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\n"
+            "Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\n"
+            "Etag: '3f80f-1b6-3e1cb03b'\r\n"
+            "Accept-Ranges:  none\r\n"
+            "Content-Length: " + str(len(body)) + "\r\n"
+            "Connection: close\r\n"
+            "Content-Type: text/html; charset=UTF-8\r\n"
+            "\r\n" + body)
     return response_dict[key] if key in response_dict else response_dict['format']
 
 
