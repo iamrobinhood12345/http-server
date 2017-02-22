@@ -4,18 +4,46 @@ An http server using python sockets.
 
 ## Tox:
 
-    src/test_server.py .F..
+    platform darwin -- Python 3.5.2, pytest-3.0.6, py-1.4.32, pluggy-0.4.0
+    rootdir: /Users/ben/401/http-server2/http-server, inifile: 
+    plugins: cov-2.4.0
+    collected 4 items 
+
+    src/test_server.py ....
 
     ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
     Name                 Stmts   Miss  Cover   Missing
     --------------------------------------------------
-    src/client.py           24      3    88%   11, 19, 32
-    src/server.py           40     31    22%   11-37, 47-56, 61-70, 74
+    src/client.py           22      2    91%   11, 30
+    src/server.py           38     29    24%   11-35, 45-54, 59-68, 72
     src/test_server.py      15      0   100%
     --------------------------------------------------
-    TOTAL                   79     34    57%
+    TOTAL                   75     31    59%
+
+
+    ============================= 4 passed in 0.06 seconds =============================
     
-Can only run one server test at a time on my system. Connection does not close.
+-
+
+    platform darwin -- Python 2.7.13, pytest-3.0.6, py-1.4.32, pluggy-0.4.0
+    rootdir: /Users/ben/401/http-server2/http-server, inifile: 
+    plugins: cov-2.4.0
+    collected 4 items 
+
+    src/test_server.py ....
+
+    ---------- coverage: platform darwin, python 2.7.13-final-0 ----------
+    Name                 Stmts   Miss  Cover   Missing
+    --------------------------------------------------
+    src/client.py           22      2    91%   11, 30
+    src/server.py           38     29    24%   11-35, 45-54, 59-68, 72
+    src/test_server.py      15      0   100%
+    --------------------------------------------------
+    TOTAL                   75     31    59%
+
+
+    ============================= 4 passed in 0.05 seconds =============================
+
 
 
 
