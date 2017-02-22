@@ -7,38 +7,44 @@ An http server using python sockets.
         platform darwin -- Python 3.5.2, pytest-3.0.6, py-1.4.32, pluggy-0.4.0
         rootdir: /Users/ben/401/http-server2/http-server, inifile: 
         plugins: cov-2.4.0
-        collected 25 items 
+        collected 29 items 
 
-        src/test_server.py ....................FFFFF
+        src/test_server.py .............................
 
         ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
         Name                 Stmts   Miss  Cover   Missing
         --------------------------------------------------
-        src/client.py           24     14    42%   16-28, 32
-        src/server.py           67     34    49%   10-21, 26-32, 37-45, 73, 78, 86, 92-149, 154
-        src/test_server.py      42      0   100%
+        src/client.py           24      2    92%   19, 32
+        src/server.py           63     22    65%   10-19, 24-30, 42, 69, 74, 82, 149
+        src/test_server.py      54      0   100%
         --------------------------------------------------
-        TOTAL                  133     48    64%
+        TOTAL                  141     24    83%
+
+
+        ========================== 29 passed in 0.15 seconds ===========================
+
   
 -
 
         platform darwin -- Python 2.7.13, pytest-3.0.6, py-1.4.32, pluggy-0.4.0
         rootdir: /Users/ben/401/http-server2/http-server, inifile: 
         plugins: cov-2.4.0
-        collected 25 items 
+        collected 29 items 
 
-        src/test_server.py .....................FFFF
+        src/test_server.py .............................
 
         ---------- coverage: platform darwin, python 2.7.13-final-0 ----------
         Name                 Stmts   Miss  Cover   Missing
         --------------------------------------------------
         src/client.py           24      1    96%   32
-        src/server.py           67     34    49%   10-21, 26-32, 37-45, 73, 78, 86, 92-149, 154
-        src/test_server.py      42      0   100%
+        src/server.py           63     22    65%   10-19, 24-30, 42, 69, 74, 82, 149
+        src/test_server.py      54      0   100%
         --------------------------------------------------
-        TOTAL                  133     35    74%
+        TOTAL                  141     23    84%
+
+
+        ========================== 29 passed in 0.12 seconds ===========================
     
-Can only run one server test at a time on my system. Connection does not close.
 
 
 
