@@ -4,16 +4,39 @@ An http server using python sockets.
 
 ## Tox:
 
-    src/test_server.py .F..
+        platform darwin -- Python 3.5.2, pytest-3.0.6, py-1.4.32, pluggy-0.4.0
+        rootdir: /Users/ben/401/http-server2/http-server, inifile: 
+        plugins: cov-2.4.0
+        collected 25 items 
 
-    ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
-    Name                 Stmts   Miss  Cover   Missing
-    --------------------------------------------------
-    src/client.py           24      3    88%   11, 19, 32
-    src/server.py           40     31    22%   11-37, 47-56, 61-70, 74
-    src/test_server.py      15      0   100%
-    --------------------------------------------------
-    TOTAL                   79     34    57%
+        src/test_server.py ....................FFFFF
+
+        ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
+        Name                 Stmts   Miss  Cover   Missing
+        --------------------------------------------------
+        src/client.py           24     14    42%   16-28, 32
+        src/server.py           67     34    49%   10-21, 26-32, 37-45, 73, 78, 86, 92-149, 154
+        src/test_server.py      42      0   100%
+        --------------------------------------------------
+        TOTAL                  133     48    64%
+  
+-
+
+        platform darwin -- Python 2.7.13, pytest-3.0.6, py-1.4.32, pluggy-0.4.0
+        rootdir: /Users/ben/401/http-server2/http-server, inifile: 
+        plugins: cov-2.4.0
+        collected 25 items 
+
+        src/test_server.py .....................FFFF
+
+        ---------- coverage: platform darwin, python 2.7.13-final-0 ----------
+        Name                 Stmts   Miss  Cover   Missing
+        --------------------------------------------------
+        src/client.py           24      1    96%   32
+        src/server.py           67     34    49%   10-21, 26-32, 37-45, 73, 78, 86, 92-149, 154
+        src/test_server.py      42      0   100%
+        --------------------------------------------------
+        TOTAL                  133     35    74%
     
 Can only run one server test at a time on my system. Connection does not close.
 
