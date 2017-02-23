@@ -4,52 +4,43 @@ An http server using python sockets.
 
 ## Tox:
 
-        platform darwin -- Python 3.5.2, pytest-3.0.6, py-1.4.32, pluggy-0.4.0
-        rootdir: /Users/ben/401/http-server2/http-server, inifile: 
-        plugins: cov-2.4.0
-        collected 29 items 
+    src/test_server.py .............................
 
-        src/test_server.py .............................
-
-        ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
-        Name                 Stmts   Miss  Cover   Missing
-        --------------------------------------------------
-        src/client.py           24      2    92%   19, 32
-        src/server.py           63     22    65%   10-19, 24-30, 42, 69, 74, 82, 149
-        src/test_server.py      54      0   100%
-        --------------------------------------------------
-        TOTAL                  141     24    83%
+    ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
+    Name                 Stmts   Miss  Cover   Missing
+    --------------------------------------------------
+    src/client.py           24      3    88%   11, 19, 32
+    src/server.py           63     22    65%   10-19, 24-30, 42, 69, 74, 82, 149
+    src/test_server.py      55      0   100%
+    --------------------------------------------------
+    TOTAL                  142     25    82%
 
 
-        ========================== 29 passed in 0.15 seconds ===========================
+    =================================== 29 passed in 0.22 seconds ====================================
 
   
 -
 
-        platform darwin -- Python 2.7.13, pytest-3.0.6, py-1.4.32, pluggy-0.4.0
-        rootdir: /Users/ben/401/http-server2/http-server, inifile: 
-        plugins: cov-2.4.0
-        collected 29 items 
+    src/test_server.py .............................
 
-        src/test_server.py .............................
-
-        ---------- coverage: platform darwin, python 2.7.13-final-0 ----------
-        Name                 Stmts   Miss  Cover   Missing
-        --------------------------------------------------
-        src/client.py           24      1    96%   32
-        src/server.py           63     22    65%   10-19, 24-30, 42, 69, 74, 82, 149
-        src/test_server.py      54      0   100%
-        --------------------------------------------------
-        TOTAL                  141     23    84%
+    ---------- coverage: platform darwin, python 2.7.13-final-0 ----------
+    Name                 Stmts   Miss  Cover   Missing
+    --------------------------------------------------
+    src/client.py           24      2    92%   11, 32
+    src/server.py           63     22    65%   10-19, 24-30, 42, 69, 74, 82, 149
+    src/test_server.py      55      0   100%
+    --------------------------------------------------
+    TOTAL                  142     24    83%
 
 
-        ========================== 29 passed in 0.12 seconds ===========================
+    =================================== 29 passed in 0.17 seconds ====================================
+
     
 
 
 
 
-## "Console Tests" with changing port numbers between uses:
+## "Console Tests":
 
 ### "200 OK" request/response cycle (valid request):
 
