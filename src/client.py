@@ -15,6 +15,8 @@ def client(message):
     client_socket.connect(stream_info[-1])
     buffer_length = 8
     response = u""
+    if sys.version_info[0] == 2:
+        message = message.decode('utf-8')
     client_socket.sendall(message.encode('utf-8'))
     while True:
         data = client_socket.recv(buffer_length)

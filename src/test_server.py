@@ -3,8 +3,29 @@
 
 import pytest
 
+OK_PARAMS = [
+    ("GET th® blerg woot"),
+    ("GET thü blerg woot"),
+    ("GET thñ blerg woot"),
+    ("GET th® blerg woot"),
+    ("GET the blerg woot"),
+    ("GET I eat  éclaires"),
+    ("GET é®ñü®")
+]
 
-def test_response_ok():
+FAILED_PARAMS = [
+    ("Get th® blerg woot"),
+    ("Get thü blerg woot"),
+    ("Get thñ blerg woot"),
+    ("Get th® blerg woot"),
+    ("Get the blerg woot"),
+    ("Get I eat  éclaires"),
+    ("Get é®ñü®")
+]
+
+
+@pytest.mark.parametrize("n", OK_PARAMS)
+def test_response_ok(n):
     """Test to see if valid client request will return a 200 OK message."""
     from client import client
     response = ("HTTP/1.1 200 OK\r\n"
@@ -16,10 +37,11 @@ def test_response_ok():
         "<h1>Hello, World!</h1>\r\n"
         "</body>\r\n"
         "</html>")
-    assert client("GET the blerg woot") == response
+    assert client(n) == response
 
 
-def test_response_failed():
+@pytest.mark.parametrize("n", FAILED_PARAMS)
+def test_response_failed(n):
     """Test to see if invalid client request will return a 500 Error message."""
     from client import client
     response = ("HTTP/1.1 500 Internal Server Error\r\n"
@@ -31,7 +53,7 @@ def test_response_failed():
         "<h1>Internal Server Error</h1>\r\n"
         "</body>\r\n"
         "</html>")
-    assert client("Get the blerg woot") == response
+    assert client(n) == response
 
 
 def test_method_validation_ok():
