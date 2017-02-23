@@ -1,3 +1,5 @@
+# encoding:utf-8
+
 """Tests to make sure client and server can communicate via sockets."""
 
 
@@ -7,34 +9,34 @@ import pytest
 REQUESTS = [
     [
         "OK",
-        ("GET /teddy/bear.html HTTP/1.1\r\n"
+        ("GET /teddyé®ñü®/bear.html HTTP/1.1\r\n"
         "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
         "Server: Teddy Bear\r\n"
         "Host:  \r\n")
     ],
     [
         "method",
-        ("PUT /teddy/bear.html HTTP/1.1\r\n"
+        ("PUT /teddyé®ñü®/bear.html HTTP/1.1\r\n"
         "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
         "Server: Teddy Bear\r\n"
         "Host:  \r\n")
     ],
     [
         "version",
-        ("GET /teddy/bear.html HTTP/1.0\r\n"
+        ("GET /teddyé®ñü®/bear.html HTTP/1.0\r\n"
         "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
         "Server: Teddy Bear\r\n"
         "Host:  \r\n")
     ],
     [
         "host",
-        ("GET /teddy/bear.html HTTP/1.1\r\n"
+        ("GET /teddyé®ñü®/bear.html HTTP/1.1\r\n"
         "Date: Mon, 27 Jul 1884 12:28:53 GMT\r\n"
         "Server: Teddy Bear\r\n")
     ],
     [
         "format",
-        ("GET /teddy/bear.html HTTP/1.1\r\n"
+        ("GET /teddyé®ñü®/bear.html HTTP/1.1\r\n"
         "Date : Mon, 27 Jul 1884 12:28:53 GMT\r\n"
         "Server: Teddy Bear\r\n"
         "Host:  \r\n")
@@ -44,23 +46,23 @@ REQUESTS = [
 
 REQUESTS_RESPONSES = [
     [
-        "GET /teddy/bear.html HTTP/1.1\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
+        "GET /teddyé®ñü®/bear.html HTTP/1.1\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
         "HTTP/1.1 200 OK\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 438\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n<num bytes of content>"
     ],
     [
-        "PUT /teddy/bear.html HTTP/1.1\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
+        "PUT /teddyé®ñü®/bear.html HTTP/1.1\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
         "HTTP/1.1 405 Method Not Allowed\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 438\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n<num bytes of content>"
     ],
     [
-        "GET /teddy/bear.html HTTP/1.0\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
+        "GET /teddyé®ñü®/bear.html HTTP/1.0\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
         "HTTP/1.1 403 Forbidden\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 438\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n<num bytes of content>"
     ],
     [
-        "GET /teddy/bear.html HTTP/1.1\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\n",
+        "GET /teddyé®ñü®/bear.html HTTP/1.1\r\nDate: Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\n",
         "HTTP/1.1 417 Expectation Failed\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 438\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n<num bytes of content>"
     ],
     [
-        "GET /teddy/bear.html HTTP/1.1\r\nDate : Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
+        "GET /teddyé®ñü®/bear.html HTTP/1.1\r\nDate : Mon, 27 Jul 1884 12:28:53 GMT\r\nServer: Teddy Bear\r\nHost:  \r\n",
         "HTTP/1.1 400 Bad Request\r\nDate: Mon, 23 May 2005 22:38:34 GMT\r\nServer: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)\r\nLast-Modified: Wed, 08 Jan 2003 23:11:55 GMT\r\nEtag: '3f80f-1b6-3e1cb03b'\r\nAccept-Ranges:  none\r\nContent-Length: 438\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n<num bytes of content>"
     ],
 ]

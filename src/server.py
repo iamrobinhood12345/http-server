@@ -8,7 +8,7 @@ import sys
 def server():
     """Recieve a message from the client and sends a response back."""
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
-    server_socket.bind(("127.0.0.1", 7011))
+    server_socket.bind(("127.0.0.1", 7012))
     server_socket.listen(1)
     buffer_length = 8
     while True:
@@ -23,8 +23,8 @@ def buffer_request(buffer_length, conn):
     """Return a decoded client request."""
     req = u""
     while True:
-        addition = conn.recv(buffer_length).decode('utf-8')
-        req += addition
+        addition = conn.recv(buffer_length)
+        req += addition.decode('utf-8')
         if len(addition) < buffer_length:
             break
     return req.replace('\\r\\n', '\r\n')
