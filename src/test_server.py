@@ -1,3 +1,5 @@
+# encoding:utf-8
+
 """Tests to make sure client and server can communicate via sockets."""
 
 
