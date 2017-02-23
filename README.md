@@ -2,9 +2,6 @@
 
 An http server using python sockets.
 
-## NOTE!!!
-
-Non ascii characters pass Python2 console tests but do not pass tox! (See section Python2 Console Tests)
 
 ## Tox:
 
@@ -15,33 +12,28 @@ Non ascii characters pass Python2 console tests but do not pass tox! (See sectio
     --------------------------------------------------
     src/client.py           24      3    88%   11, 19, 32
     src/server.py           38     29    24%   11-35, 45-54, 59-68, 72
-    src/test_server.py      17      0   100%
+    src/test_server.py      18      0   100%
     --------------------------------------------------
-    TOTAL                   79     32    59%
+    TOTAL                   80     32    60%
 
 
-    =================================== 16 passed in 0.17 seconds ====================================
+    =================================== 16 passed in 0.13 seconds ====================================
     
 -
+
+    src/test_server.py ................
 
     ---------- coverage: platform darwin, python 2.7.13-final-0 ----------
     Name                 Stmts   Miss  Cover   Missing
     --------------------------------------------------
-    src/client.py           24     24     0%   4-32
-    src/server.py           38     38     0%   2-72
-    src/test_server.py      17     17     0%   4-68
+    src/client.py           24      2    92%   11, 32
+    src/server.py           38     29    24%   11-35, 45-54, 59-68, 72
+    src/test_server.py      18      0   100%
     --------------------------------------------------
-    TOTAL                   79     79     0%
+    TOTAL                   80     31    61%
 
-    ============================================= ERRORS =============================================
-    ______________________________ ERROR collecting src/test_server.py _______________________________
-    .tox/py27/lib/python2.7/site-packages/_pytest/python.py:418: in _importtestmodule
-        mod = self.fspath.pyimport(ensuresyspath=importmode)
-    .tox/py27/lib/python2.7/site-packages/py/_path/local.py:662: in pyimport
-        __import__(modname)
-    E     File "/Users/ben/401/http-server2/http-server/src/test_server.py", line 7
-    E   SyntaxError: Non-ASCII character '\xc2' in file /Users/ben/401/http-server2/http-server/src/test_server.py on line 7, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!! Interrupted: 1 errors during collection !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    =================================== 16 passed in 0.09 seconds ====================================
 
 
 
