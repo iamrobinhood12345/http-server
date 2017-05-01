@@ -1,3 +1,5 @@
+# encoding:utf-8
+
 """Tests to make sure client and server can communicate via sockets."""
 
 
@@ -102,20 +104,7 @@ def test_parse_request_format():
 def test_method_validation(status, req):
     """Test to see if GET requests are valid and any other type of requests are invalid."""
     from server import method_validation
-    valid = method_validation(req)
-    if status == "method":
-        valid = not valid
-    assert valid
-
-
-@pytest.mark.parametrize("status, req", REQUESTS)
-def test_version_validation(status, req):
-    """Test to see if GET requests are valid and any other type of requests are invalid."""
-    from server import version_validation
-    valid = version_validation(req)
-    if status == "version":
-        valid = not valid
-    assert valid
+    assert method_validation("GET ") is True
 
 
 @pytest.mark.parametrize("status, req", REQUESTS)

@@ -1,3 +1,4 @@
+
 """Server programmed to recieve messages from client and return http response."""
 
 
@@ -171,7 +172,6 @@ def response_error(key, body=None, content_type=None):
             "Content-Type: text/html; charset=UTF-8\r\n"
             "\r\n" + body)
     return response_dict[key] if key in response_dict else response_dict['format']
-
 
 if __name__ == '__main__':
     server()
