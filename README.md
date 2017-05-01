@@ -2,198 +2,46 @@
 
 An http server using python sockets.
 
-
 ## Tox:
 
-    src/test_server.py ................
+        platform darwin -- Python 3.5.2, pytest-3.0.6, py-1.4.32, pluggy-0.4.0
+        rootdir: /Users/ben/401/http-server2/http-server, inifile: 
+        plugins: cov-2.4.0
+        collected 31 items 
 
-    ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
-    Name                 Stmts   Miss  Cover   Missing
-    --------------------------------------------------
-    src/client.py           24      3    88%   11, 19, 32
-    src/server.py           38     29    24%   11-35, 45-54, 59-68, 72
-    src/test_server.py      18      0   100%
-    --------------------------------------------------
-    TOTAL                   80     32    60%
+        src/test_server.py ...............................
+
+        ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
+        Name                 Stmts   Miss  Cover   Missing
+        --------------------------------------------------
+        src/client.py           27      4    85%   18-19, 26, 37
+        src/server.py           87     44    49%   10-23, 28-34, 47-49, 75, 80, 88, 94-111, 163, 177
+        src/test_server.py      60      0   100%
+        --------------------------------------------------
+        TOTAL                  174     48    72%
 
 
-    =================================== 16 passed in 0.13 seconds ====================================
+        ========================== 31 passed in 0.17 seconds ===========================
+
+  
+-
+
+        platform darwin -- Python 2.7.13, pytest-3.0.6, py-1.4.32, pluggy-0.4.0
+        rootdir: /Users/ben/401/http-server2/http-server, inifile: 
+        plugins: cov-2.4.0
+        collected 31 items 
+
+        src/test_server.py ...............................
+
+        ---------- coverage: platform darwin, python 2.7.13-final-0 ----------
+        Name                 Stmts   Miss  Cover   Missing
+        --------------------------------------------------
+        src/client.py           27      3    89%   21, 28, 37
+        src/server.py           87     44    49%   10-23, 28-34, 47-49, 75, 80, 88, 94-111, 163, 177
+        src/test_server.py      60      0   100%
+        --------------------------------------------------
+        TOTAL                  174     47    73%
+
+
+        ========================== 31 passed in 0.14 seconds ===========================
     
--
-
-    src/test_server.py ................
-
-    ---------- coverage: platform darwin, python 2.7.13-final-0 ----------
-    Name                 Stmts   Miss  Cover   Missing
-    --------------------------------------------------
-    src/client.py           24      2    92%   11, 32
-    src/server.py           38     29    24%   11-35, 45-54, 59-68, 72
-    src/test_server.py      18      0   100%
-    --------------------------------------------------
-    TOTAL                   80     31    61%
-
-
-    =================================== 16 passed in 0.09 seconds ====================================
-
-
-
-
-
-## Python2 Console Tests:
-
-### Valid methods:
-
-    (env) Williams-MacBook-Pro:src ben$ python2 client.py "GET I eat  éclaires"
-    HTTP/1.1 200 OK
-    Server: Teddy Bear
-    Content-Type: text/html
-    Connection: Closed
-
-    <html>
-    <body>
-    <h1>Hello, World!</h1>
-    </body>
-    </html>
-
--
-
-    (env) Williams-MacBook-Pro:src ben$ python2 client.py "GET é®ñü®"
-    HTTP/1.1 200 OK
-    Server: Teddy Bear
-    Content-Type: text/html
-    Connection: Closed
-
-    <html>
-    <body>
-    <h1>Hello, World!</h1>
-    </body>
-    </html>
-
--
-
-    (env) Williams-MacBook-Pro:src ben$ python2 client.py "GET th® blerg woot"
-    HTTP/1.1 200 OK
-    Server: Teddy Bear
-    Content-Type: text/html
-    Connection: Closed
-
-    <html>
-    <body>
-    <h1>Hello, World!</h1>
-    </body>
-    </html>
-
--
-
-    (env) Williams-MacBook-Pro:src ben$ python2 client.py "GET thñ blerg woot"
-    HTTP/1.1 200 OK
-    Server: Teddy Bear
-    Content-Type: text/html
-    Connection: Closed
-
-    <html>
-    <body>
-    <h1>Hello, World!</h1>
-    </body>
-    </html>
-
--
-
-    (env) Williams-MacBook-Pro:src ben$ python2 client.py "GET th® blerg woot"
-    HTTP/1.1 200 OK
-    Server: Teddy Bear
-    Content-Type: text/html
-    Connection: Closed
-
-    <html>
-    <body>
-    <h1>Hello, World!</h1>
-    </body>
-    </html>
-
-### Invalid methods:
-
-    (env) Williams-MacBook-Pro:src ben$ python2 client.py "Get é®ñü®"
-    HTTP/1.1 500 Internal Server Error
-    Server: Teddy Bear
-    Content-Type: text/html
-    Connection: Closed
-
-    <html>
-    <body>
-    <h1>Internal Server Error</h1>
-    </body>
-    </html>
-
--
-
-    (env) Williams-MacBook-Pro:src ben$ python2 client.py "Get I eat  éclaires"
-    HTTP/1.1 500 Internal Server Error
-    Server: Teddy Bear
-    Content-Type: text/html
-    Connection: Closed
-
-    <html>
-    <body>
-    <h1>Internal Server Error</h1>
-    </body>
-    </html>
-
--
-
-    (env) Williams-MacBook-Pro:src ben$ python2 client.py "Get th® blerg woot"
-    HTTP/1.1 500 Internal Server Error
-    Server: Teddy Bear
-    Content-Type: text/html
-    Connection: Closed
-
-    <html>
-    <body>
-    <h1>Internal Server Error</h1>
-    </body>
-    </html>
-
--
-
-    (env) Williams-MacBook-Pro:src ben$ python2 client.py "Get thñ blerg woot"
-    HTTP/1.1 500 Internal Server Error
-    Server: Teddy Bear
-    Content-Type: text/html
-    Connection: Closed
-
-    <html>
-    <body>
-    <h1>Internal Server Error</h1>
-    </body>
-    </html>
-
--
-
-    (env) Williams-MacBook-Pro:src ben$ python2 client.py "Get thü blerg woot"
-    HTTP/1.1 500 Internal Server Error
-    Server: Teddy Bear
-    Content-Type: text/html
-    Connection: Closed
-
-    <html>
-    <body>
-    <h1>Internal Server Error</h1>
-    </body>
-    </html>
-
--
-
-    (env) Williams-MacBook-Pro:src ben$ "Get th® blerg woot"
-    -bash: Get th® blerg woot: command not found
-    (env) Williams-MacBook-Pro:src ben$ python2 client.py "Get th® blerg woot"
-    HTTP/1.1 500 Internal Server Error
-    Server: Teddy Bear
-    Content-Type: text/html
-    Connection: Closed
-
-    <html>
-    <body>
-    <h1>Internal Server Error</h1>
-    </body>
-    </html>
-

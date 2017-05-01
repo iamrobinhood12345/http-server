@@ -6,7 +6,7 @@ from setuptools import setup
 
 setup(
     name="http-server",
-    description="Echo server",
+    description="HTTP Server",
     version=0.1,
     author="Avery Pratt and Ben Shields",
     author_email="apratt91@gmail.com, bshields23@gmail.com",
